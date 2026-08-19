@@ -2,11 +2,5 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "preDeployCommand": "python manage.py migrate --noinput && python manage.py collectstatic --noinput",
-    "startCommand": "gunicorn bridgearcson.wsgi --bind 0.0.0.0:$PORT",
-    "healthcheckPath": "/",
-    "healthcheckTimeout": 300
   }
 }
