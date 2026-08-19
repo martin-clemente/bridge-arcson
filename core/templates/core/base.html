@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Bridge Arcson · Seguridad Tecnológica{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Bridge Arcson desarrolla ArcBridge One IoT, un ecosistema de seguridad inteligente para instituciones educativas: cámaras, cerraduras y sensores gestionados desde una sola app.{% endblock %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+  <link rel="icon" href="{% static 'core/src/Logo/LogoBridgeArcson.png' %}">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="{% url 'core:home' %}" class="brand">
+        <img src="{% static 'core/src/Logo/LogoBridgeArcson.png' %}" alt="Bridge Arcson" class="brand-mark">
+        <span class="brand-text">
+          <span class="brand-name">BRIDGE <span>ARCSON</span></span>
+          <span class="brand-tagline">Ecosistema de seguridad IoT</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="{% url 'core:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Inicio</a>
+        <a href="{% url 'core:producto' %}" class="{% if request.resolver_match.url_name == 'producto' %}active{% endif %}">Producto</a>
+        <a href="{% url 'core:contacto' %}" class="btn btn-primary nav-cta">Solicitar demo</a>
+      </nav>
+
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:16px;">
+        <span class="brand-name">BRIDGE <span>ARCSON</span></span>
+          </a>
+          <p style="max-width:34ch; font-size:.92rem;">Ecosistema de seguridad inteligente IoT para instituciones educativas. Monitoreo, accesos y alertas desde una sola app.</p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <a href="{% url 'core:home' %}">Inicio</a>
+          <a href="{% url 'core:producto' %}">Producto</a>
+          <a href="{% url 'core:contacto' %}">Contacto</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="mailto:{{ empresa.email|default:'bridge.arcson.016@gmail.com' }}">{{ empresa.email|default:"bridge.arcson.016@gmail.com" }}</a>
+          <a href="#">Facebook · bridge_arcson</a>
+          <a href="https://www.instagram.com/bridge_arcson/" target="_blank" rel="noopener">Instagram · bridge_arcson</a>
+          <a href="#">LinkedIn · Bridge Arcson</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {% now "Y" %} Bridge Arcson. Todos los derechos reservados.</span>
+        <span>Buenos Aires, Argentina</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'core/js/main.js' %}"></script>
+</body>
+</html>

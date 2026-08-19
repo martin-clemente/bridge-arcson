@@ -1,0 +1,112 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}{{ producto.nombre }} · Bridge Arcson{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  {% include "core/partials/_hero_circuit.html" %}
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Producto</span>
+      <h1>{{ producto.nombre }}</h1>
+      <p class="lead">
+        {{ producto.descripcion }}
+      </p>
+      <div class="hero-actions">
+        <a href="{% url 'core:contacto' %}" class="btn btn-primary">Solicitar una demo</a>
+      </div>
+    </div>
+    <img src="{% static 'core/src/Producto/BridgeArcsonProducto.png' %}" alt="ArcBridge One – Producto" class="hero-product-img">
+  </div>
+  <div class="container" style="margin-top:64px;">
+    <div class="grid-3">
+      {% for c in producto.componentes %}
+      <div class="component-card">
+        <div class="component-card-icon">{{ c.icono|safe }}</div>
+        <h3>{{ c.nombre }}</h3>
+        <p>{{ c.detalle }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-light" style="padding:80px 0;">
+  <div class="container grid-2">
+    <div class="animate-on-scroll">
+      <span class="eyebrow">Funciones</span>
+      <h2>Qué hace el sistema</h2>
+      <ul class="check-list">
+        {% for f in funciones %}
+        <li><span class="dot"></span>{{ f }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="animate-on-scroll">
+      <span class="eyebrow">Beneficios</span>
+      <h2>Qué gana tu institución</h2>
+      <ul class="check-list">
+        {% for b in beneficios %}
+        <li><span class="dot"></span>{{ b }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container grid-2" style="align-items:center;">
+    <div class="section-head">
+      <span class="eyebrow">Propuesta de valor única</span>
+      <h2 class="reveal-text">Seguro incluso sin internet</h2>
+      <p class="lead">{{ propuesta_valor }}</p>
+    </div>
+    <div class="no-signal-icon">
+      <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="1" y1="1" x2="23" y2="23" class="no-signal-slash"/>
+        <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" class="no-signal-arc"/>
+        <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" class="no-signal-arc"/>
+        <path d="M10.71 5.05A16 16 0 0 1 22.56 9" class="no-signal-arc"/>
+        <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" class="no-signal-arc"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0" class="no-signal-arc"/>
+        <line x1="12" y1="20" x2="12.01" y2="20" class="no-signal-dot"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section-deep">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Planes</span>
+      <h2 class="reveal-text">Planes ArcBridge One IoT</h2>
+    </div>
+    <div class="plans-grid">
+      {% for plan in planes %}
+      <div class="plan-card {% if plan.destacado %}featured{% endif %}">
+        {% if plan.destacado %}<span class="plan-badge">Más elegido</span>{% endif %}
+        <div class="plan-name">{{ plan.nombre }}</div>
+        <div class="plan-price">${{ plan.precio }} <small>ARS</small></div>
+        <ul class="check-list">
+          {% for item in plan.incluye %}
+          <li><span class="dot"></span>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'core:contacto' %}" class="btn {% if plan.destacado %}btn-primary{% else %}btn-dark{% endif %}" style="width:100%; justify-content:center;">Consultar plan</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">¿Querés verlo funcionando?</span>
+    <h2 class="reveal-text">Pedí una demo de {{ producto.nombre }}</h2>
+    <a href="{% url 'core:contacto' %}" class="btn btn-primary">Solicitar demo</a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "core/base.html" %}
+
+{% block title %}Contacto · Bridge Arcson{% endblock %}
+
+{% block content %}
+
+<section class="section-deep contacto-hero" style="padding-bottom:24px;">
+  <div class="container">
+    <span class="eyebrow">Contacto</span>
+    <h1 style="color:#fff; max-width:20ch; animation: hero-unfold .9s .15s cubic-bezier(.22,1,.36,1) both;">Armemos una propuesta para tu institución</h1>
+    <p class="lead">Contanos un poco sobre tu establecimiento y te respondemos con los próximos pasos.</p>
+  </div>
+</section>
+
+<section class="section-light" style="padding-top:24px;">
+  <div class="container grid-2">
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-error{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <div class="form-card">
+        <h3>Dejanos tu consulta</h3>
+        <form method="post">
+          {% csrf_token %}
+          <div class="field">
+            <label for="nombre">Nombre y apellido</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="institucion">Institución</label>
+            <input type="text" id="institucion" name="institucion" placeholder="Nombre de la escuela o institución">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+          <div class="field">
+            <label for="mensaje">Contanos qué necesitás</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cantidad de accesos, cámaras necesarias, plan de interés..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar consulta</button>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-info-card">
+        <h3 style="color:#fff;">Otras formas de contacto</h3>
+        <div class="contact-info-row">
+          <span class="ico">✉</span>
+          <div>
+            <div style="font-size:.75rem; opacity:.6;">Email</div>
+            <a href="mailto:{{ empresa.email }}">{{ empresa.email }}</a>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/bridge_arcson/" target="_blank" rel="noopener" class="contact-info-row">
+          <span class="ico">◎</span>
+          <div>
+            <div style="font-size:.75rem; opacity:.6;">Instagram</div>
+            <span>@{{ empresa.redes.instagram }}</span>
+          </div>
+        </a>
+        <div class="contact-info-row">
+          <span class="ico">▤</span>
+          <div>
+            <div style="font-size:.75rem; opacity:.6;">Facebook</div>
+            <span>{{ empresa.redes.facebook }}</span>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <span class="ico">in</span>
+          <div>
+            <div style="font-size:.75rem; opacity:.6;">LinkedIn</div>
+            <span>{{ empresa.redes.linkedin }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:24px;">
+        <h3>¿Ya sos cliente?</h3>
+        <p style="margin:0;">Si necesitás soporte técnico sobre un sistema ya instalado, escribinos por email indicando el nombre de tu institución para una respuesta más rápida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

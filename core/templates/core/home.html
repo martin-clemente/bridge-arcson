@@ -1,0 +1,118 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Bridge Arcson · Seguridad IoT para instituciones educativas{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  {% include "core/partials/_hero_circuit.html" %}
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Ecosistema de seguridad IoT</span>
+      <h1>La seguridad de tu institución, gestionada desde una sola app.</h1>
+      <p class="lead">
+        {{ producto.descripcion }}
+      </p>
+      <div class="hero-actions">
+        <a href="{% url 'core:contacto' %}" class="btn btn-primary">Solicitar una demo</a>
+        <a href="{% url 'core:producto' %}" class="btn btn-outline">Conocer {{ producto.nombre }}</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num" data-target="160" data-prefix="+">+0</div>
+          <div class="lbl">robos anuales en escuelas de CABA que buscamos prevenir</div>
+        </div>
+        <div class="hero-stats-group">
+          <div class="hero-stat">
+            <div class="num">24/7</div>
+            <div class="lbl">monitoreo y control de accesos en tiempo real</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num" data-target="100" data-suffix="%">0%</div>
+            <div class="lbl">funcional aún sin conexión a internet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img src="{% static 'core/src/Producto/BridgeArcsonProducto.png' %}" alt="ArcBridge One – Producto" class="hero-product-img">
+  </div>
+</section>
+
+<section class="section-light vision-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Nuestra visión</span>
+      <h2 class="reveal-text">Tranquilidad y protección para cada entorno educativo.</h2>
+      <p class="lead">{{ vision }}</p>
+    </div>
+
+    <div class="vision-row">
+      {% for valor in valores_marca %}
+      <div class="vision-item" data-animate>
+        <div class="vision-icon">
+          {% if forloop.counter == 1 %}
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          {% elif forloop.counter == 2 %}
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          {% else %}
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-7.35 16.76"/><path d="M12 2a10 10 0 0 1 7.35 16.76"/><circle cx="12" cy="12" r="2"/><path d="M12 6v6l4 2"/></svg>
+          {% endif %}
+        </div>
+        <h3>{{ valor.titulo }}</h3>
+        <p>{{ valor.detalle }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container">
+    <div class="valor-empresa">
+      <span class="eyebrow" style="justify-content:center;">Nuestro valor como empresa</span>
+      <h2 class="reveal-text">{{ valor_empresa }}</h2>
+    </div>
+  </div>
+</section>
+
+<section class="section-deep">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Planes</span>
+      <h2 class="reveal-text">Elegí el nivel de cobertura para tu institución</h2>
+      <p class="lead">Ambos planes incluyen instalación, app de gestión y soporte técnico especializado.</p>
+    </div>
+
+    <div class="plans-grid">
+      {% for plan in planes %}
+      <div class="plan-card {% if plan.destacado %}featured{% endif %}">
+        {% if plan.destacado %}<span class="plan-badge">Más elegido</span>{% endif %}
+        <div class="plan-name">{{ plan.nombre }}</div>
+        <div class="plan-price">${{ plan.precio }} <small>ARS</small></div>
+        <ul class="check-list">
+          {% for item in plan.incluye %}
+          <li>
+            <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            {{ item }}
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'core:contacto' %}" class="btn {% if plan.destacado %}btn-primary{% else %}btn-dark{% endif %}" style="width:100%; justify-content:center;">Consultar plan</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">Empecemos</span>
+    <h2 class="reveal-text">Llevemos ArcBridge One IoT a tu institución</h2>
+    <p class="lead mx-auto">Contanos sobre tu establecimiento y armamos una propuesta a medida.</p>
+    <a href="{% url 'core:contacto' %}" class="btn btn-primary">Hablar con Bridge Arcson</a>
+  </div>
+</section>
+
+{% endblock %}
