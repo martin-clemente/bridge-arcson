@@ -4,7 +4,8 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "bash start.sh",
+    "preDeployCommand": "python manage.py migrate --noinput && python manage.py collectstatic --noinput",
+    "startCommand": "gunicorn bridgearcson.wsgi --bind 0.0.0.0:$PORT",
     "healthcheckPath": "/",
     "healthcheckTimeout": 300
   }
