@@ -7,8 +7,8 @@
 <section class="section-deep contacto-hero" style="padding-bottom:24px;">
   <div class="container">
     <span class="eyebrow">Contacto</span>
-    <h1 style="color:#fff; max-width:20ch; animation: hero-unfold .9s .15s cubic-bezier(.22,1,.36,1) both;">Armemos una propuesta para tu institución</h1>
-    <p class="lead">Contanos un poco sobre tu establecimiento y te respondemos con los próximos pasos.</p>
+    <h1 style="color:#fff; max-width:20ch; animation: hero-unfold .9s .15s cubic-bezier(.22,1,.36,1) both;">Contactate con nosotros</h1>
+    <p class="lead">Escribinos tu consulta sobre nuestros productos y servicios, y te respondemos a la brevedad.</p>
   </div>
 </section>
 
@@ -24,7 +24,7 @@
       {% endif %}
 
       <div class="form-card">
-        <h3>Dejanos tu consulta</h3>
+        <h3>Envianos tu consulta</h3>
         <form method="post">
           {% csrf_token %}
           <div class="field">
@@ -32,18 +32,23 @@
             <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
           </div>
           <div class="field">
-            <label for="institucion">Institución</label>
-            <input type="text" id="institucion" name="institucion" placeholder="Nombre de la escuela o institución">
-          </div>
-          <div class="field">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="tu@email.com" required>
           </div>
           <div class="field">
-            <label for="mensaje">Contanos qué necesitás</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Cantidad de accesos, cámaras necesarias, plan de interés..." required></textarea>
+            <label for="asunto">Asunto</label>
+            <select id="asunto" name="asunto">
+              <option value="consulta">Consulta general</option>
+              <option value="soporte">Soporte técnico</option>
+              <option value="ventas">Ventas / presupuesto</option>
+              <option value="otros">Otros</option>
+            </select>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar consulta</button>
+          <div class="field">
+            <label for="mensaje">Tu mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Contanos en qué podemos ayudarte..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar mensaje</button>
         </form>
       </div>
     </div>
@@ -58,6 +63,20 @@
             <a href="mailto:{{ empresa.email }}">{{ empresa.email }}</a>
           </div>
         </div>
+        <a href="tel:+5491100000000" class="contact-info-row">
+          <span class="ico">☏</span>
+          <div>
+            <div style="font-size:.75rem; opacity:.6;">Atención al cliente</div>
+            <span>+54 9 11 0000-0000</span>
+          </div>
+        </a>
+        <a href="tel:+5491100000001" class="contact-info-row">
+          <span class="ico">⌂</span>
+          <div>
+            <div style="font-size:.75rem; opacity:.6;">Soporte técnico 24/7</div>
+            <span>+54 9 11 0000-0001</span>
+          </div>
+        </a>
         <a href="https://www.instagram.com/bridge_arcson/" target="_blank" rel="noopener" class="contact-info-row">
           <span class="ico">◎</span>
           <div>
@@ -83,7 +102,7 @@
 
       <div class="card" style="margin-top:24px;">
         <h3>¿Ya sos cliente?</h3>
-        <p style="margin:0;">Si necesitás soporte técnico sobre un sistema ya instalado, escribinos por email indicando el nombre de tu institución para una respuesta más rápida.</p>
+        <p style="margin:0;">Si necesitás soporte técnico sobre un sistema ya instalado, llamá al <a href="tel:+5491100000001" style="color:var(--blue-100); font-weight:700;">+54 9 11 0000-0001</a> (soporte 24/7) o escribinos por email indicando el nombre de tu institución para una respuesta más rápida.</p>
       </div>
     </div>
   </div>

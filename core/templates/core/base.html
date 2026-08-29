@@ -30,7 +30,7 @@
       <nav class="main-nav" id="main-nav">
         <a href="{% url 'core:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Inicio</a>
         <a href="{% url 'core:producto' %}" class="{% if request.resolver_match.url_name == 'producto' %}active{% endif %}">Producto</a>
-        <a href="{% url 'core:contacto' %}" class="btn btn-primary nav-cta">Solicitar demo</a>
+        <a href="{% url 'core:contacto' %}" class="btn btn-primary nav-cta">Contáctanos</a>
       </nav>
 
       <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -61,6 +61,8 @@
         <div>
           <h4>Contacto</h4>
           <a href="mailto:{{ empresa.email|default:'bridge.arcson.016@gmail.com' }}">{{ empresa.email|default:"bridge.arcson.016@gmail.com" }}</a>
+          <a href="tel:+5491100000000">Atención al cliente: +54 9 11 0000-0000</a>
+          <a href="tel:+5491100000001">Soporte técnico 24/7: +54 9 11 0000-0001</a>
           <a href="#">Facebook · bridge_arcson</a>
           <a href="https://www.instagram.com/bridge_arcson/" target="_blank" rel="noopener">Instagram · bridge_arcson</a>
           <a href="#">LinkedIn · Bridge Arcson</a>

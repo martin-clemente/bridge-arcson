@@ -15,7 +15,7 @@
         {{ producto.descripcion }}
       </p>
       <div class="hero-actions">
-        <a href="{% url 'core:contacto' %}" class="btn btn-primary">Solicitar una demo</a>
+        <a href="#planes" class="btn btn-primary">Consultar precio</a>
       </div>
     </div>
     <img src="{% static 'core/src/Producto/BridgeArcsonProducto.png' %}" alt="ArcBridge One – Producto" class="hero-product-img">
@@ -27,6 +27,30 @@
         <div class="component-card-icon">{{ c.icono|safe }}</div>
         <h3>{{ c.nombre }}</h3>
         <p>{{ c.detalle }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-deep" id="planes" style="padding-top:24px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Planes</span>
+      <h2 class="reveal-text">Planes ArcBridge One IoT</h2>
+    </div>
+    <div class="plans-grid">
+      {% for plan in planes %}
+      <div class="plan-card {% if plan.destacado %}featured{% endif %}">
+        {% if plan.destacado %}<span class="plan-badge">Más elegido</span>{% endif %}
+        <div class="plan-name">{{ plan.nombre }}</div>
+        <div class="plan-price">${{ plan.precio }} <small>ARS</small></div>
+        <ul class="check-list">
+          {% for item in plan.incluye %}
+          <li><span class="dot"></span>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'core:contacto' %}" class="btn {% if plan.destacado %}btn-primary{% else %}btn-dark{% endif %}" style="width:100%; justify-content:center;">Consultar plan</a>
       </div>
       {% endfor %}
     </div>
@@ -73,30 +97,6 @@
         <path d="M8.53 16.11a6 6 0 0 1 6.95 0" class="no-signal-arc"/>
         <line x1="12" y1="20" x2="12.01" y2="20" class="no-signal-dot"/>
       </svg>
-    </div>
-  </div>
-</section>
-
-<section class="section-deep">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Planes</span>
-      <h2 class="reveal-text">Planes ArcBridge One IoT</h2>
-    </div>
-    <div class="plans-grid">
-      {% for plan in planes %}
-      <div class="plan-card {% if plan.destacado %}featured{% endif %}">
-        {% if plan.destacado %}<span class="plan-badge">Más elegido</span>{% endif %}
-        <div class="plan-name">{{ plan.nombre }}</div>
-        <div class="plan-price">${{ plan.precio }} <small>ARS</small></div>
-        <ul class="check-list">
-          {% for item in plan.incluye %}
-          <li><span class="dot"></span>{{ item }}</li>
-          {% endfor %}
-        </ul>
-        <a href="{% url 'core:contacto' %}" class="btn {% if plan.destacado %}btn-primary{% else %}btn-dark{% endif %}" style="width:100%; justify-content:center;">Consultar plan</a>
-      </div>
-      {% endfor %}
     </div>
   </div>
 </section>
